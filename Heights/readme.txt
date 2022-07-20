@@ -1,0 +1,1 @@
+Code by Raymond von Bommel, David Holmes, and J. Steffen Muller for the paper "Explicit arithmetic intersection theory and computation of N\'eron-Tate heights". <https://arxiv.org/pdf/1809.06791.pdf>
