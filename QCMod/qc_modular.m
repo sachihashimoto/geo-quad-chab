@@ -585,7 +585,7 @@ function QCModAffine(Q, p : N := 15, prec := 2*N, basis0 := [], basis1 := [], ba
       printf " Power series expansions of the quadratic Chabauty functions at correspondence %o in all good affine disks, capped at precision %o\n", k, 3;  
       for i := 1 to #F_list do
         if F_list[i] ne 0 then 
-        printf " disk %o\n expansion: %o \n\n", [Fp!(Qppoints[i]`x), Fp!(Qppoints[i]`b[2])], ChangePrecision(F_list[i], 3);
+        printf " disk %o\n expansion: %o \n\n", [Fp!(Qppoints[i]`t), Fp!(Qppoints[i]`b[2])], ChangePrecision(F_list[i], 3);
         end if;
       end for;
     end if; 
