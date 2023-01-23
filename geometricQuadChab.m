@@ -1310,6 +1310,10 @@ end function;
 
 jbtilde := findJbTilde(ResidueDisk,gBminC);
 
+print "Warning: assumed that all c_U are trivial (i.e. all local heights away from p are trivial) when constructing jbtilde";
+
+//To do: add functionality to compute constants c_U / or let user enter this in
+
 function intersectKappaJbTilde(kappaInParams,jbTilde)
   GB<x,y,z,t> := PolynomialRing(GF(p),4);
   I := ideal<GB|[x-Evaluate(jbTilde[1],t),y-Evaluate(jbTilde[2],t),z-Evaluate(jbTilde[3],t)]>;
