@@ -1288,14 +1288,19 @@ function findJbTilde(ResidueDisk, gBminC)
   lh0 := localHeightPnu(ResidueDisk,Q0, logMumford0,geval0, 0, n0);
   print("this is local height pnu 0");
   print(lh0);
+  lh10 := localHeightPnu(ResidueDisk, Q0, logMumford0,geval0, 1, n0);
 
   Q1, n1, logMumford1, geval1 := makeDfPnuxX(1, ResidueDisk, gBminC);
   lh1:=localHeightPnu(ResidueDisk,Q1, logMumford1,geval1, 1, n1);
   print("this is local height pnu 1");
   print(lh1);
-
+  lh01 := localHeightPnu(ResidueDisk, Q1, logMumford1,geval1, 0, n1);
 
   jbt:=[lineBetween([lh0[1][i],lh1[1][i]],[0,1]): i in [1,2]] cat [lineBetween([lh0[2],lh1[2]],[0,1])];
+  // Check jbt is linear (the constant v is zero)
+  assert Valuation(lh10[2]-lh0[2]) ge 1;
+  assert Valuation(lh01[2]-lh0[2]) ge 1;
+  assert Valuation(lh1[2]-lh10[2]-lh01[2]+lh0[2]) ge 2;
 
   // Check that we get a line
   Q2, n2, logMumford2, geval2 := makeDfPnuxX(2, ResidueDisk, gBminC);
