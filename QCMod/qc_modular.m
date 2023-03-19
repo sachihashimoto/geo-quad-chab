@@ -606,7 +606,9 @@ function QCModAffine(Q, p : N := 15, prec := 2*N, basis0 := [], basis1 := [], ba
       valgammafili := i le maxdeggammafils[k] select minvalgammafils[k] else 0;
       return -2*Floor(log(p,i)) +c1s[k] + Min(c2,c3+2*minvalchangebasis);
     end function;
-
+    
+    print Minimum(minvalgammafils[k], c2 + c3); // Make sure that the constant from Remark 5.3 is zero
+    
     zero_list := [* *];
     sol_list  := [* *];
    
