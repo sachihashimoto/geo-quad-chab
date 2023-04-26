@@ -211,7 +211,7 @@ function QCModAffine(Q, p : N := 15, prec := 2*N, basis0 := [], basis1 := [], ba
   local_base_point_index := FindQpointQp(bQ,Qppoints);       // Index of global base point in list of local points.
 
   FF   := fun_field(data);
-  bpt   := CommonZeros([FF!x-bQ_xy[1], FF.1-bQ_xy[2]])[1]; // Base point as place on the function field
+  bpt   := CommonZeros([FF!Qx.1-bQ_xy[1], FF.1-bQ_xy[2]])[1]; // Base point as place on the function field
   if pl gt 1 then printf "\n Using the base point %o.\n", bQ_xy; end if;
   good_affine_rat_pts_xy_no_bpt := Remove(good_affine_rat_pts_xy, global_base_point_index); 
 
@@ -585,7 +585,7 @@ function QCModAffine(Q, p : N := 15, prec := 2*N, basis0 := [], basis1 := [], ba
       printf " Power series expansions of the quadratic Chabauty functions at correspondence %o in all good affine disks, capped at precision %o\n", k, 3;  
       for i := 1 to #F_list do
         if F_list[i] ne 0 then 
-        printf " disk %o\n expansion: %o \n\n", [Fp!(Qppoints[i]`t), Fp!(Qppoints[i]`b[2])], ChangePrecision(F_list[i], 3);
+        printf " disk %o\n expansion: %o \n\n", [Fp!(Qppoints[i]`x), Fp!(Qppoints[i]`b[2])], ChangePrecision(F_list[i], 3);
         end if;
       end for;
     end if; 
@@ -607,8 +607,11 @@ function QCModAffine(Q, p : N := 15, prec := 2*N, basis0 := [], basis1 := [], ba
       return -2*Floor(log(p,i)) +c1s[k] + Min(c2,c3+2*minvalchangebasis);
     end function;
     
-    print Minimum(minvalgammafils[k], c2 + c3); // Make sure that the constant from Remark 5.3 is zero
-    
+    if pl gt 0 then
+      print "A lower bound on the valuation of the coeffs on h_p";
+      print Minimum(minvalgammafils[k],Minimum(valetas[k],0)+ c2); // Make sure that the constant from Prop 5.2 is zero
+    end if;
+
     zero_list := [* *];
     sol_list  := [* *];
    
